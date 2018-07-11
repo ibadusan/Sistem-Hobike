@@ -49,28 +49,16 @@ class BikeController extends Controller
 
         ]);
 
-        // $photo = $request->file('image')->getClientOriginalName();
-        // // $destination = base_path() . '/public/images';
-        // $destination ='./images/';
-        // // dd($destination);
-        // $request->file('image')->move($destination, $photo);
-        // dd($request);
+        $photo = $request->file('image');
+        $extension = $photo->getClientOriginalExtension();
+        Storage::disk('public/images')->put($photo->getFilename().'.'.$extension,  File::get($photo));
 
-        if ($request->hasFile('image') && $request->file('image')->isValid())
-                {
-                    $path = $request->image->store('images');
-                    if(!empty($path)){
-                        $edit = Model::FindOrFail($id);
-    //                    Delete old image
-                        $exists = Storage::disk('local')->exists($edit->image);
-                        if($exists){
-                            Storage::delete($edit->image);
-                        }
-                        $edit->image = $path;
-                        $edit->save();
-                    }
-                }
-
+        $photo = $request->file('image')->getClientOriginalName();
+        // $destination = base_path() . '/public/images';
+        $destination ='./images/';
+        // dd($destination);
+        $request->file('image')->move($destination, $photo);
+        dd($request);
 
         Bike::create($request->all());
         return redirect()->route('bike.index')

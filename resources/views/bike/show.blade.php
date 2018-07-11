@@ -51,7 +51,8 @@
 		<div class="form-group">
 			<strong>Foto:</strong>
 			{{-- {{ $bike->image}} --}}
-			<img src="{{ url('storage/images/'.$bike->image)}}" height="30px" width="30px">
+			<img class="card-img-top" src="{{url('images/'.$bike->image)}}" alt="{{$bike->image}}">
+			{{-- <img src="{{ url('storage/images/'.$bike->image)}}" height="30px" width="30px"> --}}
 			{{-- <img src="{{ storage_path().'/images/'.$bike->image }}" alt="" title=""></a> --}}
 			{{-- <img src="storage/images/{{$bike['image']}}" height="30px" width="30px"> --}}
 			{{-- <img src="{{ asset("images/$bike->image")}}"> --}}
