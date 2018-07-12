@@ -35,7 +35,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
 	Route::post('select-ajax', ['as'=>'select-ajax','uses'=>'TransaksiController@selectBike']);
 
 	// Profile
-	Route::get('waktu', 'BikeController@waktu');
 	Route::get('settings/profile', 'SettingController@profile');
 
     // Edit Profile

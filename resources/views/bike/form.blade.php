@@ -24,7 +24,7 @@
     <div class="form-group has-feedback">
         <div class="form-group">
             <strong>Upload Foto Sepeda:</strong>
-            {!! Form::file('image', array('class'=>'form-control')) !!}
+            {!! Form::file('image', array('class'=>'form-control', 'name'=>'image')) !!}
         </div>
     </div>
     

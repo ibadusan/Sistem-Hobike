@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use App\Bike;
 use App\Hotel;
 use App\lokasi;
@@ -53,16 +54,24 @@ class BikeController extends Controller
         $extension = $photo->getClientOriginalExtension();
         Storage::disk('public/images')->put($photo->getFilename().'.'.$extension,  File::get($photo));
 
-        $photo = $request->file('image')->getClientOriginalName();
-        // $destination = base_path() . '/public/images';
-        $destination ='./images/';
-        // dd($destination);
-        $request->file('image')->move($destination, $photo);
-        dd($request);
+        $bikes = new Bike();
+        $bikes->jenis_sepeda = $request->jenis_sepeda;
+        $bikes->merek_sepeda = $request->merek_sepeda;
+        $bikes->kode_sepeda = $request->kode_sepeda;
+        $bikes->image = $photo->getFilename().'.'.$extension;
 
-        Bike::create($request->all());
         return redirect()->route('bike.index')
-        ->with('success','Sepeda telah ditambahkan');
+        ->with('success', 'Sepeda telah ditambahkan');
+
+        // $photo = $request->file('image')->getClientOriginalName();
+        // $destination = base_path() . '/public/images';
+        // $destination ='./images/';
+        // $request->file('image')->move($destination, $photo);
+        
+
+        // Bike::create($request->all());
+        // return redirect()->route('bike.index')
+        // ->with('success','Sepeda telah ditambahkan');
     }
 
     /**
@@ -127,10 +136,5 @@ class BikeController extends Controller
         Bike::find($id)->delete();
         return redirect()->route('bike.index')
         ->with('success', 'Sepeda telah sukses di hapus');
-    }
-
-    public function waktu()
-    {
-        return view('bike.waktu');
     }
 }

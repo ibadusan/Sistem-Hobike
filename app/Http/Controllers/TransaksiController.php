@@ -101,14 +101,6 @@ class TransaksiController extends Controller
      */
     public function update(Request $request, $id)
     {
-    	// date_default_timezone_set('Asia/Jakarta');
-    	// // $tanggal            = plain_date(request('tanggal'));
-    	// $mulai=Carbon::parse(request('created_at'));
-    	// $selesai=Carbon::parse(request('updated_at'));
-
-    	// dd($mulai, $selesai);
-    	// $selisih    = $mulai->diffInHours($selesai);
-    	// $total=$selisih * 1.5;
 
 
     	$sewas = \App\Sewa::findOrFail($id);
@@ -120,27 +112,7 @@ class TransaksiController extends Controller
     	$sewas->hotel_id_kembali = $request->get('hotel_id_kembali');
     	$sewas->total = $total;
     	$sewas->save();
-    	return redirect()->route('sewa.kembali', compact('sewas', 'total', 'selisih'));
-    	// $harga = 1.5;
-
-		// $total    = $mulai->diffInHours($selesai);
-    	// $tanggal            = plain_date(request('tanggal'));
-    	// $mulai              = Carbon::now()->parse(request('mulai'));
-    	// $selesai            = Carbon::now()->parse(request('selesai'));
-
-    	// list($jam,$menit,$detik)=explode(':',$mulai);
-
-    	// $buatWaktuMulai=mktime($jam,$menit,$detik,1,1,1);
-    	// date("m", strtotime($_GET['created_at']));
-
-    	// list($jam,$menit,$detik)=explode(':',$selesai);
-    	// date("s", strtotime($_GET['updated_at']));
-    	// $selisih    = $mulai->diffInHours($selesai);
-    // //-----membentuk waktu selesai
-    	// $buatWaktuSelesai=mktime($jam,$menit,$detik,1,1,1);
-    	// $selisih=$buatWaktuSelesai-$buatWaktuMulai;
-
-    	
+    	return redirect()->route('sewa.kembali', compact('sewas', 'total', 'selisih'));  	
 
     	
     }
@@ -148,20 +120,10 @@ class TransaksiController extends Controller
 
     public function kembali()
     {
-    	// $sewas = Sewa::all();
-        // $selisih = Carbon::now()->diffInHours('created_at');
     	$sewas = Sewa::where('hotel_id_kembali', '<>', null)->get();
     	// $sewas = Sewa::where('hotel_id_kembali', null)->get();
     	return view('transaksi.kembali2', compact('sewas'));
 
-    	 //   	$sewas = DB::table('sewas')
-  //   	->join('members','members.id', '=', 'sewas.member_id')
-  //   	->join('hotels','hotels.id', '=', 'sewas.hotel_id_awal')
-  //   	->join('bikes','bikes.id', '=', 'sewas.bike_id')
-		// // ->select('sewas.*', 'users.name as namamember', 'hotels.nama', 'bikes.id as bikeid', 'hotel_id_kembali as kembali')
-  //   	->select('sewas.*', 'members.nama as namamember', 'hotels.nama', 'bikes.id as bikeid', 'hotels.nama as hotel_id_kembali')
-  //   	->get();
-    	// $sewas = Sewa::where('hotel_id_kembali', auth()->hotelKembali()->id)->get();
     }
 
     public function absensi()

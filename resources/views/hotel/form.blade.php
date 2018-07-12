@@ -28,20 +28,22 @@
 
     <div class="col-md-4">
         <div class="form-group">
-            <strong>Bujur:</strong>
-            {!! Form::text('bujur', null, array('placeholder' => 'Koordinat Bujur','class' => 'form-control')) !!}
+            <strong>Lintang:</strong>
+            {!! Form::text('lat', null, array('placeholder' => 'Koordinat Lintang','class' => 'form-control')) !!}
         </div>
     </div>
-
+    
     <div class="col-md-4">
         <div class="form-group">
-            <strong>Lintang:</strong>
-            {!! Form::text('lintang', null, array('placeholder' => 'Koordinat Lintang','class' => 'form-control')) !!}
+            <strong>Bujur:</strong>
+            {!! Form::text('long', null, array('placeholder' => 'Koordinat Bujur','class' => 'form-control')) !!}
         </div>
     </div>
 
+    
+
     <div class="col-xs-12 col-sm-12 col-md-4 text-center">
-            <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 
 </div>
